@@ -85,6 +85,7 @@ type (
 		Send() error
 		IsSent() bool
 		Rows() int
+		MapStructToValues(v any) ([]any, error)
 	}
 	BatchColumn interface {
 		Append(any) error

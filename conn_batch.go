@@ -150,6 +150,10 @@ func (b *batch) AppendStruct(v any) error {
 	return b.Append(values...)
 }
 
+func (b *batch) MapStructToValues(v any) ([]any, error) {
+	return b.conn.structMap.Map("AppendStruct", b.block.ColumnsNames(), v, false)
+}
+
 func (b *batch) IsSent() bool {
 	return b.sent
 }

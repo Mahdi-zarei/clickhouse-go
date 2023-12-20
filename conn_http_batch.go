@@ -147,6 +147,10 @@ func (b *httpBatch) AppendStruct(v any) error {
 	return b.Append(values...)
 }
 
+func (b *httpBatch) MapStructToValues(v any) ([]any, error) {
+	return b.structMap.Map("AppendStruct", b.block.ColumnsNames(), v, false)
+}
+
 func (b *httpBatch) Column(idx int) driver.BatchColumn {
 	if len(b.block.Columns) <= idx {
 		return &batchColumn{
